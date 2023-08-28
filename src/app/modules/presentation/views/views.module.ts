@@ -14,6 +14,8 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BreadcrumbModule } from 'xng-breadcrumb';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HomeProjectCardComponent } from './home/home-project-card/home-project-card.component';
+import { HomeProjectListComponent } from './home/home-project-list/home-project-list.component';
 
 
 
@@ -27,7 +29,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     EpicComponent,
     StoryComponent,
     LoginComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HomeProjectCardComponent,
+    HomeProjectListComponent
   ],
   imports: [
     ReactiveFormsModule,
