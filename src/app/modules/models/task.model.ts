@@ -24,7 +24,7 @@ export class Task extends Item {
         return this._created;
     }
 
-    get dueDate(): Date | undefined {
+    get due(): Date | undefined {
         return this._dueDate;
     }
 
@@ -41,7 +41,7 @@ export class Task extends Item {
         this._created = value;
     }
 
-    set dueDate(value: Date | undefined) {
+    set due(value: Date | undefined) {
         this._dueDate = value;
     }
 
