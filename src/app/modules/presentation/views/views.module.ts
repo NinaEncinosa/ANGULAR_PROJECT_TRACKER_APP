@@ -16,6 +16,8 @@ import { BreadcrumbModule } from 'xng-breadcrumb';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeProjectCardComponent } from './home/home-project-card/home-project-card.component';
 import { HomeProjectListComponent } from './home/home-project-list/home-project-list.component';
+import { HomeDueListComponent } from './home/home-due-list/home-due-list.component';
+import { HomeDueCardComponent } from './home/home-due-card/home-due-card.component';
 
 
 
@@ -31,7 +33,9 @@ import { HomeProjectListComponent } from './home/home-project-list/home-project-
     LoginComponent,
     PageNotFoundComponent,
     HomeProjectCardComponent,
-    HomeProjectListComponent
+    HomeProjectListComponent,
+    HomeDueListComponent,
+    HomeDueCardComponent
   ],
   imports: [
     ReactiveFormsModule,

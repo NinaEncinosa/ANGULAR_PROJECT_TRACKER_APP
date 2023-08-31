@@ -1,0 +1,9 @@
+<section>
+    <ul class="due-list">
+        <li *ngFor="let item of items" class="due-item">
+            <app-home-due-card [@puff] [item]=item></app-home-due-card>
+        </li>
+    </ul>
+
+    <app-no-items-card [@puff] *ngIf="items!=undefined && items.length === 0"></app-no-items-card>
+</section>

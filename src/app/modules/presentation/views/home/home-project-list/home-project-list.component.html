@@ -1,8 +1,6 @@
-<p>home-project-list works!</p>
-
 <section>
-    <ul>
-        <li *ngFor="let project of projects" class="project-list">
+    <ul class="project-list">
+        <li *ngFor="let project of projects" class="project-item">
             <app-home-project-card [project]="project"></app-home-project-card>
         </li>
     </ul>

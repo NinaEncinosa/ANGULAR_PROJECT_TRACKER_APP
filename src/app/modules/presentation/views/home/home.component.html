@@ -1,3 +1,33 @@
-<h1>Projects summary</h1>
+<ng-container *ngIf="loading; else content">
+    <div class="loading-progress">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+</ng-container>
 
-<app-home-project-list></app-home-project-list>
+<ng-template #content class="home-container">
+    <h1 *ngIf="user">Welcome back, {{ user.name.first }}!</h1>
+
+    <section class="projects">
+        <h2>Projects summary</h2>
+        <app-home-project-list></app-home-project-list>
+    </section>
+
+    <mat-divider></mat-divider>
+
+    <section class="due">
+        <h2>In the next 3 days</h2>
+        <div class="due-list">
+            <div>
+                <h3>Stories</h3>
+                <app-home-due-list [items]="dueStories"></app-home-due-list>
+            </div>
+            <div>
+                <h3>Tasks</h3>
+                <app-home-due-list [items]="dueTasks"></app-home-due-list>
+            </div>
+        </div>
+    </section>
+
+</ng-template>
+
+

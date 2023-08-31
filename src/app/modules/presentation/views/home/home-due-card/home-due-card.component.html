@@ -1,0 +1,20 @@
+<ng-container *ngIf="loading; else content">
+  <div class="loading-progress">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+</ng-container>
+
+<ng-template #content class="home-due-container">
+    <mat-card class="due-card">
+        <mat-card-header class="due-header">
+            <mat-card-title class="due-title">{{ item.name }}</mat-card-title>
+        </mat-card-header>
+    
+        <mat-divider></mat-divider>
+    
+        <mat-card-content class="due-content">
+            <p>Due date: {{ item.due | date }}</p>
+            <p>{{ itemPath }}</p>
+        </mat-card-content>
+    </mat-card>
+</ng-template>

@@ -1,15 +1,27 @@
-<mat-card class="home">
-    <mat-card-header class="">
-      <mat-card-title>{{ project.name }}</mat-card-title>
-    </mat-card-header>
+<ng-container *ngIf="loading; else content">
+  <div class="loading-progress">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+</ng-container>
 
-    <mat-divider></mat-divider>
+<ng-template #content class="home-project-container">
+  <mat-card class="project-card">
+      <mat-card-header class="project-header">
+        <mat-card-title class="project-title">{{ project.name }}</mat-card-title>
+      </mat-card-header>
+  
+      <mat-divider></mat-divider>
+  
+      <mat-card-content class="project-content">
+        <p>Epics: {{ totalEpics }}</p>
+        <p>Stories: {{ totalStories }}</p>
+        <p>Tasks: {{ totalTasks }}</p>
+      </mat-card-content>
 
-    <mat-card-content>
-      <p>Epics: {{ epics.length }}</p>
-      <p></p>
-      <p></p>
-
-    </mat-card-content>
-
-</mat-card>
+      <mat-card-footer class="project-footer">
+        <mat-chip>
+          {{ isOwner() ? "owner" : "member"}}
+        </mat-chip>
+      </mat-card-footer>
+  </mat-card>
+</ng-template>

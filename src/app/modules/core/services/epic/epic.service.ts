@@ -130,4 +130,11 @@ export class EpicService extends ListService<Epic>{
       catchError(() => of([])) 
     );
   }
+
+  getStoriesIds(id: string): Observable<string[]> {
+    return this.getStoriesByEpic(id).pipe(
+      map(stories => stories.map(story => story._id))
+    );
+  }  
+
 }

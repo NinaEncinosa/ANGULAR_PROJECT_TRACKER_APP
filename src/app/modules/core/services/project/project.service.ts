@@ -129,4 +129,11 @@ export class ProjectService extends ListService<Project> {
         catchError(() => of([]))
       );
   }
+
+  getEpicsIds(id: string): Observable<string[]> {
+    return this.getEpicsByProject(id).pipe(
+      map(epics => epics.map(epic => epic._id))
+    );
+  }  
+
 }

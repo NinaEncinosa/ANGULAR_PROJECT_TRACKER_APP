@@ -1,0 +1,20 @@
+.due-card {
+    transition: box-shadow 0.3s ease, transform 0.1s ease;
+    box-sizing: border-box;
+    &:hover {
+      box-shadow: 2px 2px 4px rgb(63, 81, 181);
+    }
+  
+    .due-header {
+      margin-bottom: 0.8rem;
+      align-self: center;  
+  
+      .due-title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+    
+  }
+  

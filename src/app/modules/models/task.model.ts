@@ -4,14 +4,14 @@ export class Task extends Item {
 
     private _story: string;
     private _created?: Date;
-    private _dueDate?: Date;
+    private _due?: Date;
     private _done?: boolean;
 
-    constructor(name: string, description: string, _id: string, story: string, created?: Date, dueDate?: Date, done?: boolean) {
+    constructor(name: string, description: string, _id :string, story: string, created?: Date, dueDate?: Date, done?: boolean) {
         super(name, description, _id);
         this._story = story;
         this._created = created || new Date();
-        this._dueDate = dueDate;
+        this._due = dueDate;
         this._done = done || false;
     }
 
@@ -24,8 +24,8 @@ export class Task extends Item {
         return this._created;
     }
 
-    get dueDate(): Date | undefined {
-        return this._dueDate;
+    get due(): Date | undefined {
+        return this._due;
     }
 
     get done(): boolean | undefined {
@@ -41,8 +41,8 @@ export class Task extends Item {
         this._created = value;
     }
 
-    set dueDate(value: Date | undefined) {
-        this._dueDate = value;
+    set due(value: Date | undefined) {
+        this._due = value;
     }
 
     set done(value: boolean | undefined) {

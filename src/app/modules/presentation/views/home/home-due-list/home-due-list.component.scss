@@ -1,0 +1,11 @@
+.due-list{
+    list-style:none;
+    padding-left: 0px;
+    display: flex;
+    flex-direction: column;
+
+    .due-item {
+        width: 35rem;
+        margin-bottom: 1rem;
+    }
+}
