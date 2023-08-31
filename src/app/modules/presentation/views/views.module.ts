@@ -14,6 +14,8 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BreadcrumbModule } from 'xng-breadcrumb';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HeaderComponent } from './home/header/header.component';
+import { TodaysTasksComponent } from './home/todays-tasks/todays-tasks.component';
 
 
 
@@ -27,7 +29,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     EpicComponent,
     StoryComponent,
     LoginComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HeaderComponent,
+    TodaysTasksComponent
   ],
   imports: [
     ReactiveFormsModule,

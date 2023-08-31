@@ -1,0 +1,11 @@
+<ng-container *ngIf="loading; else content">
+    <div class="loading-progress">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+</ng-container>
+
+<ng-template #content>
+    <mat-card *ngIf="user">
+        <mat-card-title>Hello {{user.name.first}}</mat-card-title>
+    </mat-card>
+</ng-template>
