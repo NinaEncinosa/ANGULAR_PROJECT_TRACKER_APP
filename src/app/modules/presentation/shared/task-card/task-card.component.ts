@@ -30,11 +30,12 @@ export class TaskCardComponent {
             if(this.parentItemId)
             this.ts.getItems(this.parentItemId).subscribe();
             else
-            this.ts.getItems("").subscribe();
+            this.ts.getItems(this.task.story).subscribe();
           }});
       }
     });
   }
+
 
   togleDone(){   
     this.task.done = !this.task.done;
