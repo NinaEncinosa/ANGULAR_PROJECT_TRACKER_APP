@@ -1,4 +1,3 @@
-
 <ng-container *ngIf="loading; else content">
     <div class="loading-progress">
         <mat-progress-bar mode="indeterminate" ></mat-progress-bar>
@@ -11,6 +10,4 @@
     <app-add-item [formDialog]=formComponent></app-add-item>
     <app-card-list [list]= "epics" [parentId]=parentItemId></app-card-list>
 </ng-template>
-
-
 

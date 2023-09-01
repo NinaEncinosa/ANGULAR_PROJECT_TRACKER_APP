@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { LIST_SERVICE_TOKEN } from 'src/app/modules/core/services/list/list.service';
 import { StoryService } from 'src/app/modules/core/services/story/story.service';
 import { Status } from 'src/app/modules/models/enum';

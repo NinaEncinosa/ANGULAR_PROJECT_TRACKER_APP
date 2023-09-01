@@ -20,7 +20,6 @@ export class ProjectFormComponent implements OnInit{
   members$: Observable<User[]>;
   isEditing: boolean = false;
   isMobile: boolean = false;
-  fruitCtrl = new FormControl();
   selectedUsers: User[] = [];
 
   constructor(
@@ -75,7 +74,6 @@ export class ProjectFormComponent implements OnInit{
   }
 
   onSubmit() {
-    console.log(this.myForm.value);
     if (this.isEditing) {    
       this.ps.updateItem(this.myForm.value).subscribe({
         next: () => {
@@ -122,7 +120,6 @@ export class ProjectFormComponent implements OnInit{
     if (!this.selectedUsers.includes(selectedUser)) {
       this.selectedUsers.push(selectedUser);
       this.myForm.get('members')?.setValue(this.selectedUsers.map(user => user._id));
-      this.fruitCtrl.setValue(''); // Limpiar el campo de entrada
     }
   }
 

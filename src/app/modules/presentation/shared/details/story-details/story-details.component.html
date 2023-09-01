@@ -1,72 +1,73 @@
-
-<mat-expansion-panel  class="custom-extension-panel" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-    <mat-expansion-panel-header>
-      <div class="header">
-        <div class="icon-container" *ngIf="item.icon">
-          <img src= "../../../../../../../assets/emojis/icons8-{{item.icon}}-48.png" alt="Icon"  width="28" height="28">
-        </div>
-        <div class="content">
-          <mat-panel-title>{{ item.name }}</mat-panel-title>
-          <mat-panel-description *ngIf="item.description">
-            {{ item.description }}
-          </mat-panel-description>
-        </div>
+<mat-expansion-panel class="custom-extension-panel" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+  <mat-expansion-panel-header>
+    <div class="header">
+      <div class="icon-container" *ngIf="item.icon">
+        <img src="../../../../../../../assets/emojis/icons8-{{item.icon}}-48.png" alt="Icon" width="28" height="28">
       </div>
-    </mat-expansion-panel-header>
-  
-    <mat-divider></mat-divider>
-    
-    <ul>
-        <li *ngIf="item.epic">
-           Epic: {{epicName}}
-        </li>
+      <div class="content">
+        <mat-panel-title>{{ item.name }}</mat-panel-title>
+        <mat-panel-description *ngIf="item.description">
+          {{ item.description }}
+        </mat-panel-description>
+      </div>
+    </div>
+  </mat-expansion-panel-header>
+
+  <mat-divider></mat-divider>
+
+  <ul>
+    <li *ngIf="item.epic">
+      Epic: {{epicName}}
+    </li>
 
 
-        <li *ngIf="item.points">
-          Points:&nbsp;&nbsp; <mat-chip> <mat-icon matChipAvatar [style.color]="'rgb(248, 163, 35)'">star</mat-icon> {{item.points}}</mat-chip>
-        </li>
+    <li *ngIf="item.points">
+      Points:&nbsp;&nbsp; <mat-chip> <mat-icon matChipAvatar [style.color]="'rgb(248, 163, 35)'">star</mat-icon>
+        {{item.points}}</mat-chip>
+    </li>
 
 
-        <li *ngIf="members.length > 0"> 
-            Assigned To:&nbsp;&nbsp;
-            <div *ngFor="let member of members; let last = last">
-              <mat-chip>   <img matChipAvatar src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="Photo of a Shiba Inu"/> {{member}}</mat-chip>{{ !last ? ', ' : '' }}
-            </div>    
-        </li>
-   
-        <li *ngIf="item.status"> Status:&nbsp; 
-          <mat-chip>
-            {{ item.status }} 
-           </mat-chip>
-          </li>
+    <li *ngIf="members.length > 0">
+      Assigned To:&nbsp;&nbsp;
+      <div *ngFor="let member of members; let last = last">
+        <mat-chip> <img matChipAvatar src="https://material.angular.io/assets/img/examples/shiba1.jpg"
+            alt="Photo of a Shiba Inu" /> {{member}}</mat-chip>{{ !last ? ', ' : '' }}
+      </div>
+    </li>
 
-        <li *ngIf="item.created"> 
-          Created:&nbsp;{{ item.created | date:'dd/MM/yyyy' }}
-        </li>
+    <li *ngIf="item.status"> Status:&nbsp;
+      <mat-chip>
+        {{ item.status }}
+      </mat-chip>
+    </li>
 
-        <li *ngIf="item.due"> 
-            Due:&nbsp; {{ item.due | date:'dd/MM/yyyy' }}
-        </li>
+    <li *ngIf="item.created">
+      Created:&nbsp;{{ item.created | date:'dd/MM/yyyy' }}
+    </li>
 
-        <li *ngIf="item.started"> 
-            Started:&nbsp; {{ item.started | date:'dd/MM/yyyy' }}
-        </li>
+    <li *ngIf="item.due">
+      Due:&nbsp; {{ item.due | date:'dd/MM/yyyy' }}
+    </li>
 
-        <li *ngIf="item.finished">
-            Finished:&nbsp; {{ item.finished | date:'dd/MM/yyyy' }}
-        </li>
+    <li *ngIf="item.started">
+      Started:&nbsp; {{ item.started | date:'dd/MM/yyyy' }}
+    </li>
 
-        <li *ngIf="item.owner">
-          Owner:&nbsp;&nbsp;  <mat-chip color=primary>
-            <img matChipAvatar src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="Photo of a Shiba Inu"/>
-            {{ownerName}}
-          </mat-chip>
-        </li>
+    <li *ngIf="item.finished">
+      Finished:&nbsp; {{ item.finished | date:'dd/MM/yyyy' }}
+    </li>
+
+    <li *ngIf="item.owner">
+      Owner:&nbsp;&nbsp; <mat-chip color=primary>
+        <img matChipAvatar src="https://material.angular.io/assets/img/examples/shiba1.jpg"
+          alt="Photo of a Shiba Inu" />
+        {{ownerName}}
+      </mat-chip>
+    </li>
 
 
-    </ul>
-  
-  
-    
-  </mat-expansion-panel>
-  
+  </ul>
+
+
+
+</mat-expansion-panel>

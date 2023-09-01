@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Observable, map, of } from 'rxjs';
 import { EpicService } from 'src/app/modules/core/services/epic/epic.service';
-import { StoryService } from 'src/app/modules/core/services/story/story.service';
 import { UserService } from 'src/app/modules/core/services/user/user.service';
 import { Status } from 'src/app/modules/models/enum';
 import { Story } from 'src/app/modules/models/story';
@@ -47,21 +45,4 @@ export class StoryDetailsComponent {
     }
   }
 
-
-  getStatusChipColor(status: string): string {
-    console.log(status);
-    console.log(Status.Todo);
-    switch (status) {
-      case Status.Todo:
-        console.log('aca');
-        return 'todo-chip'; // Clase CSS para estado pendiente
-      case Status.Running:
-        return 'running-chip'; // Clase CSS para estado en progreso
-      case Status.Done:
-        return 'done-chip'; // Clase CSS para estado completado
-      default:
-        console.log('jejox')
-        return ''; 
-    }
-  }
 }

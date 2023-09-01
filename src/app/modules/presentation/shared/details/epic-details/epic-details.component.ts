@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Epic } from 'src/app/modules/models/epic.model';
 import { ProjectService } from '../../../../core/services/project/project.service';
-import { Project } from '../../../../models/project.model';
 
 @Component({
   selector: 'app-epic-details',

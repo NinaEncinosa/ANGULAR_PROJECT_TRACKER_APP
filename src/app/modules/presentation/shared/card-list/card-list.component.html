@@ -1,9 +1,9 @@
 <section>
     <ul>
         <li *ngFor="let item of list" class="list-item">
-            <app-item-card [@puff] [item]=item [parentItemId]=parentId></app-item-card>
+            <app-item-card [item]=item [parentItemId]=parentId></app-item-card>
         </li>
     </ul>
 
-    <app-no-items-card [@puff] *ngIf="list!=undefined && list.length === 0"></app-no-items-card>
+    <app-no-items-card *ngIf="list!=undefined && list.length === 0"></app-no-items-card>
 </section>

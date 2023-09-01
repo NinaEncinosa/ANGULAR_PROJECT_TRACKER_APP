@@ -1,11 +1,9 @@
 import { Item } from './item.model';
-import { User } from './user';
 
 export class Project extends Item {
   private _members: string[];
   private _icon: string;
   private _owner: string;
-
 
   constructor(
     name: string,

@@ -72,10 +72,8 @@ export class StoryComponent {
         //traigo el nombre del story para mostrar en el breadcrumb
         this.storyService.getItemName(id).subscribe(
           storyName => {
-            console.log(storyName);
             this.breadcrumbService.set('@Story', `${storyName}`);
         });
-
       }
     });
   }

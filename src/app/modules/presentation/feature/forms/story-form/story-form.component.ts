@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -10,7 +10,6 @@ import { StoryService } from 'src/app/modules/core/services/story/story.service'
 import { UserService } from 'src/app/modules/core/services/user/user.service';
 import { User } from 'src/app/modules/models/user';
 import { dateLessThan } from '../validation/date.validation';
-import { Status } from 'src/app/modules/models/enum';
 
 @Component({
   selector: 'app-story-form',
@@ -23,9 +22,7 @@ export class StoryFormComponent {
   members!: User[];
   members$: Observable<User[]>;
   isEditing: boolean = false;
-  selectedPoint!: number;
   selectedUsers: User[] = [];
-  fruitCtrl = new FormControl();
 
 
   constructor(
@@ -60,7 +57,6 @@ export class StoryFormComponent {
           this.selectedUsers = users
         }
       ) 
-      this.selectedPoint = this.data.initialValues.points;
       this.myForm = this.fb.group({
         _id: new FormControl(this.data.initialValues._id),
         name: new FormControl(this.data.initialValues.name, [
@@ -93,7 +89,7 @@ export class StoryFormComponent {
         epic: new FormControl(this.epicId),
         owner: new FormControl(ownerId),
         assignedTo: new FormControl(''),
-        points : new FormControl(''),
+        points : new FormControl(1),
         created: new FormControl(new Date().setHours(0,0,0,0)),
         due: new FormControl(''),
         started: new FormControl(''),
@@ -129,9 +125,7 @@ export class StoryFormComponent {
             duration: 5000,
           });
         }
-      });
-      console.log(this.ss.updateItem(this.myForm.value));
-      
+      });      
     } else {
       this.ss.createItem(this.myForm.value).subscribe({
         next: () => {
@@ -180,7 +174,6 @@ export class StoryFormComponent {
     if (!this.selectedUsers.includes(selectedUser)) {
       this.selectedUsers.push(selectedUser);
       this.myForm.get('assignedTo')?.setValue(this.selectedUsers.map(user => user._id));
-      this.fruitCtrl.setValue(''); // Limpiar el campo de entrada
     }
   }
 

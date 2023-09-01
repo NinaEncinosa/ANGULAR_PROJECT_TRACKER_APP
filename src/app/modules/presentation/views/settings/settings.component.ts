@@ -3,7 +3,6 @@ import { AuthService } from 'src/app/modules/api-rest/services/auth.service';
 import { UserService } from 'src/app/modules/core/services/user/user.service';
 import { User } from 'src/app/modules/models/user';
 import { ThemeService } from '../../../core/services/theme/theme.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-settings',
@@ -17,9 +16,7 @@ export class SettingsComponent implements OnInit {
 
   constructor(private authService: AuthService, private us: UserService, private ts: ThemeService) { }
 
-  ngOnInit(): void {
-
-    
+  ngOnInit(): void {   
     const userId = this.authService.getUserId();
     if (userId) {
       this.us.getUserById(userId).subscribe(

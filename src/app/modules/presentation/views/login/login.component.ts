@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../api-rest/services/auth.service';
-import { ActivatedRoute, Route, Router } from '@angular/router';
-import { UserCredentials } from '../../../models/userCredentials';
+import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserResponse } from 'src/app/modules/models/userResponse';
-import { catchError, throwError, Subscription } from 'rxjs';
+import { catchError } from 'rxjs';
 import { endpoint } from 'src/app/modules/api-rest/enviroments/endpoints';
 
 @Component({
@@ -59,15 +57,11 @@ export class LoginComponent implements OnInit {
 
   }
 
-
-
   handleError(error: any) {
     this.isLoading = false;
     this.errorMessage = '*Incorrect username or password';
     console.error('Ocurrió un error durante el inicio de sesión ', error);
   }
-
-
 
 }
 

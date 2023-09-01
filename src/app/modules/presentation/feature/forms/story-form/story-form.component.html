@@ -38,8 +38,7 @@
                 <!-- Points -->
                 <mat-form-field class="mat-form-field-inline-points" appearance="outline">
                     <mat-label>Points&nbsp; </mat-label>
-                    <mat-select [(ngModel)]="selectedPoint" formControlName="points">
-                        <mat-option [value]=0>0</mat-option>
+                    <mat-select formControlName="points">
                         <mat-option [value]=1>1</mat-option>
                         <mat-option [value]=2>2</mat-option>
                         <mat-option [value]=3>3</mat-option>
@@ -88,9 +87,8 @@
                     <mat-hint>MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2></mat-datepicker>
-                    <mat-error *ngIf="myForm.get('due')?.errors?.['dateLessThan']">Due date must be equal or after
-                        creation
-                        date ({{myForm.get('created')?.value | date}})</mat-error>
+                    <mat-error *ngIf="myForm.get('due')?.errors?.['dateLessThan']">Must be equal or after
+                        {{myForm.get('created')?.value | date}}</mat-error>
                 </mat-form-field>
 
             </div>

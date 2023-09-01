@@ -1,4 +1,4 @@
-import { Injectable, InjectionToken } from '@angular/core';
+import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Item } from 'src/app/modules/models/item.model';
 
@@ -23,7 +23,4 @@ export abstract class ListService<Item> {
   abstract deleteItem(id: string): Observable<Item | null>;
 
   abstract editItem(item: Item): void;
-
-  //Llamar a esta funcion desde el item-detail-card y filtar que datos del total muestra la vista
-  //abstract getViewDetails(id: string): Observable<Item>;
 }

@@ -1,14 +1,13 @@
 import { Item } from "./item.model";
-import { Project } from "./project.model";
 
 export class Epic extends Item {
 
-    private _project: string; 
-    private _icon: string ;
+    private _project: string;
+    private _icon: string;
 
-    constructor(name: string, description: string, project: Project, icon: string, _id:string) {
+    constructor(name: string, description: string, project: string, icon: string, _id: string) {
         super(name, description, _id);
-        this._project = project._id;
+        this._project = project;
         this._icon = icon;
     }
 
@@ -24,7 +23,7 @@ export class Epic extends Item {
         this._project = project;
     }
 
-    set icon(icon: string ) {
+    set icon(icon: string) {
         this._icon = icon;
     }
 

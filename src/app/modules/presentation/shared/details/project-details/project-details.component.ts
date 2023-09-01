@@ -37,10 +37,6 @@ export class ProjectDetailsComponent {
     }
   }
 
-
-
-
-
 }
 
 

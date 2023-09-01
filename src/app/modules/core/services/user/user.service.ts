@@ -9,12 +9,12 @@ import { User } from 'src/app/modules/models/user';
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]> {
     return this.http.get<ApiResponse>(PathRest.GET_USERS).pipe(
       map((response) => response.data),
-      catchError(() => of([])) 
+      catchError(() => of([]))
     );
   }
 
@@ -33,7 +33,6 @@ export class UserService {
         catchError(() => of(''))
       )
     );
-    console.log(forkJoin(membersNames$))
     return forkJoin(membersNames$);
   }
 
@@ -43,7 +42,7 @@ export class UserService {
         catchError(() => of(null))
       )
     );
-  
+
     return forkJoin(userObservables$).pipe(
       map(users => users.filter(user => user !== null) as User[])
     );

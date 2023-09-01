@@ -1,15 +1,13 @@
 import { Item } from "./item.model";
-import { Story } from "./story";
 
 export class Task extends Item {
 
-    // private _story: Story; 
-    private _story: Story;
+    private _story: string;
     private _created?: Date;
     private _dueDate?: Date;
     private _done?: boolean;
 
-    constructor(name: string, description: string, _id :string, story: Story, created?: Date, dueDate?: Date, done?: boolean) {
+    constructor(name: string, description: string, _id: string, story: string, created?: Date, dueDate?: Date, done?: boolean) {
         super(name, description, _id);
         this._story = story;
         this._created = created || new Date();
@@ -18,7 +16,7 @@ export class Task extends Item {
     }
 
     // Getters
-    get story(): Story {
+    get story(): string {
         return this._story;
     }
 
@@ -35,7 +33,7 @@ export class Task extends Item {
     }
 
     // Setters
-    set story(value: Story) {
+    set story(value: string) {
         this._story = value;
     }
 
@@ -47,7 +45,7 @@ export class Task extends Item {
         this._dueDate = value;
     }
 
-    set done(value: boolean | undefined ) {
+    set done(value: boolean | undefined) {
         this._done = value;
     }
 

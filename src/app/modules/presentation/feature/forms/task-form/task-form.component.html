@@ -32,8 +32,9 @@
                     <mat-hint>MM/DD/YYYY</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
-                    <mat-error *ngIf="myForm.get('due')?.errors?.['dateLessThan']">Due date must be after creation
-                        date ({{myForm.get('created')?.value | date}})</mat-error>
+                    <mat-error *ngIf="myForm.get('due')?.errors?.['dateLessThan']">Must be after 
+                        {{myForm.get('created')?.value | date}}
+                    </mat-error>
                 </mat-form-field>
             </div>
         </div>

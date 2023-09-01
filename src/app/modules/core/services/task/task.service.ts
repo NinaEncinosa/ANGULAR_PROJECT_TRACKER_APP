@@ -59,7 +59,6 @@ export class TaskService extends ListService<Task> {
   return this.tasks$;
   }
 
-  //no se usan por que no hay pantalla con descripcion de task
   override getItemById(id: string): Observable<Task> {
     return this.http.get<ApiResponse>(`${PathRest.GET_TASKS}/${id}`)
     .pipe(map((response) => response.data));
@@ -70,7 +69,6 @@ export class TaskService extends ListService<Task> {
       map((task: Task) => task.name)
     );
   }
-  //
   
   override createItem(item: Task): Observable<Task> {
     return this.http.post<ApiResponse>(PathRest.GET_TASKS, item)
@@ -90,8 +88,7 @@ export class TaskService extends ListService<Task> {
     .put<ApiResponse>(`${PathRest.GET_TASKS}/${item._id}`, item)
     .pipe(map((response) => response.data)
     ,catchError((error) => of(null))
-    ,tap((response) => {console.log(response);}
-    ));
+    );
   }
   
   override deleteItem(id: string): Observable<Task | null> {

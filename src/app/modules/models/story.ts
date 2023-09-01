@@ -1,28 +1,21 @@
-
 import { Item } from './item.model';
 import { Status } from './enum';
-
-// to-do chequear con los demas que la descripcion pueda no estar
-// to-do atributo icon
-
-//to-do revisar luego tema tipos para enlazar una epica, o un usuario o arrreglo de usuarios
-
 
 export class Story extends Item {
 
     constructor(
         name: string,
         description: string,
-        
+
         _id: string,
-        private _epic: string,   
+        private _epic: string,
         private _icon?: string | undefined,
-        private _owner?: string | undefined,  //to-do reemplazar por user / nombre de usuario / id usuario
+        private _owner?: string | undefined,
         private _assignedTo: string[] = [],
         private _points: number = 0,
         private _created: Date = new Date(),
-        private _due?: Date| undefined,
-        private _started?: Date| undefined,
+        private _due?: Date | undefined,
+        private _started?: Date | undefined,
         private _finished?: Date | undefined,
         private _status: Status = Status.Todo
     ) {
@@ -40,8 +33,8 @@ export class Story extends Item {
         return this._epic
     }
 
-    public get owner(): string | undefined{
-        return this._owner ;
+    public get owner(): string | undefined {
+        return this._owner;
     }
     public get assignedTo(): string[] {
         return this._assignedTo ?? [];
@@ -57,11 +50,11 @@ export class Story extends Item {
         return this._due;
     }
     public get started(): Date | undefined {
-        return this._started ;
+        return this._started;
     }
 
     public get finished(): Date | undefined {
-        return this._finished ;
+        return this._finished;
     }
     public get status(): Status {
         return this._status;
@@ -79,8 +72,6 @@ export class Story extends Item {
     public set points(newValue: number) {
         if (newValue >= 0 && newValue <= 5) {
             this._points = newValue;
-        } else {
-            console.log("Points value must be between 0 and 5.");
         }
     }
     public set due(newDate: Date | undefined) {
