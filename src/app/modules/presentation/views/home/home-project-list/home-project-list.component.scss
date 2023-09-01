@@ -3,10 +3,11 @@
     padding-left: 0px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
 
     .project-item {
         width: 25rem;
         margin-top: 1rem;
+        padding: 1rem;
     }
 }
