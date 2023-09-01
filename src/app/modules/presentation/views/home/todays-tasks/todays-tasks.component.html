@@ -5,18 +5,21 @@
 </ng-container>
 
 <ng-template #content>
-    <h1>Here's your list of tasks for today</h1>
+    <mat-card>
+        <mat-card-title>Today's Tasks</mat-card-title>
+        <mat-card-content>
+            <mat-radio-group >
+                <mat-radio-button value="all" (change)="onChange($event)" checked>All</mat-radio-button>
+                <mat-radio-button value="todo" (change)="onChange($event)">Todo</mat-radio-button>
+                <mat-radio-button value="done" (change)="onChange($event)">Done</mat-radio-button>
+            </mat-radio-group>
+        
+            <ul>
+                <li *ngFor="let task of selectedTasks">
+                  <app-task-card [task]=task></app-task-card>
+                </li>
+            </ul>
+        </mat-card-content>
 
-    <mat-radio-group >
-        <mat-radio-button value="all" (change)="onChange($event)" checked>All</mat-radio-button>
-        <mat-radio-button value="todo" (change)="onChange($event)">Todo</mat-radio-button>
-        <mat-radio-button value="done" (change)="onChange($event)">Done</mat-radio-button>
-    </mat-radio-group>
-
-    <ul>
-        <li *ngFor="let task of selectedTasks">
-          <app-task-card [task]=task></app-task-card>
-        </li>
-    </ul>
-
+    </mat-card>
 </ng-template>

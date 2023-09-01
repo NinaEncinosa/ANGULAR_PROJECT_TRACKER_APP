@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { combineLatest } from 'rxjs';
+import { StoryService } from 'src/app/modules/core/services/story/story.service';
 import { TaskService } from 'src/app/modules/core/services/task/task.service';
+import { Story } from 'src/app/modules/models/story';
 import { Task } from 'src/app/modules/models/task.model';
 
 @Component({
@@ -9,21 +12,35 @@ import { Task } from 'src/app/modules/models/task.model';
 })
 export class TodaysTasksComponent implements OnInit {
   loading: boolean = false;
+  stories: Story[] = [];
+  storiesIds: string[] = [];
   selectedTasks: Task[] = [];
   today: Date = new Date();
 
-  constructor(private ts: TaskService) {
+  constructor(private ts: TaskService, private ss: StoryService) {
     this.today.setHours(0, 0, 0, 0);
   }
 
   ngOnInit(): void {
-    this.ts.getAllItems().subscribe({
-      next: (tasks) => {
-        this.selectedTasks = tasks;
-        this.selectedTasks = this.filterByDate(this.today, this.selectedTasks);
-        this.loading = false;
+    let data = [
+      this.ss.getAllItems(),
+      this.ts.getAllItems(),
+    ]
+
+    combineLatest(data).subscribe((resp: any) => {
+      this.stories = resp[0];
+      //obtengo los ids de las stories que son mias
+      for (let i = 0; i < this.stories.length; i++) {
+        if(!this.storiesIds.includes(this.stories[i]._id))
+          this.storiesIds.push(this.stories[i]._id);
       }
-    });  
+      this.selectedTasks = resp[1];
+      this.selectedTasks = this.selectedTasks.filter((task) =>
+        this.storiesIds.includes(task.story)
+      );
+      this.selectedTasks = this.filterByDate(this.today, this.selectedTasks);
+      this.loading = false;
+    }); 
   }
 
   filterByDate(today: Date, list: Task[]): Task[] {

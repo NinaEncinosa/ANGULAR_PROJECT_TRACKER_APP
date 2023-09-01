@@ -1,4 +1,27 @@
 ul {
   list-style: none;
   padding-left: 0;
+}
+
+mat-card {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+mat-card-title {
+  font-size: 1.5rem;
+}
+
+@media only screen and (min-width: 768px) {
+  mat-card {
+    font-size: 1.5rem;
+  }
+  mat-card-title {
+    font-size: 1.5rem;
+  }
+  mat-card-content {
+    font-size: 1rem;
+  }
 }/*# sourceMappingURL=todays-tasks.component.css.map */
