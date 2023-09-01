@@ -13,6 +13,7 @@
         <mat-divider></mat-divider>
     
         <mat-card-content class="due-content">
+            <p>{{ item.description }}</p>
             <p>Due date: {{ item.due | date }}</p>
             <p>{{ itemPath }}</p>
         </mat-card-content>

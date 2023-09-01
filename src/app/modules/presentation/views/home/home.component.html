@@ -16,16 +16,10 @@
 
     <section class="due">
         <h2>In the next 3 days</h2>
-        <div class="due-list">
-            <div>
-                <h3>Stories</h3>
-                <app-home-due-list [items]="dueStories"></app-home-due-list>
-            </div>
-            <div>
-                <h3>Tasks</h3>
-                <app-home-due-list [items]="dueTasks"></app-home-due-list>
-            </div>
-        </div>
+        <h3>Stories</h3>
+        <app-home-due-list [items]="dueStories"></app-home-due-list>
+        <h3>Tasks</h3>
+        <app-home-due-list [items]="dueTasks"></app-home-due-list>
     </section>
 
 </ng-template>
