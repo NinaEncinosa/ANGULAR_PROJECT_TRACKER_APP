@@ -16,6 +16,8 @@ import { BreadcrumbModule } from 'xng-breadcrumb';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HeaderComponent } from './home/header/header.component';
 import { TodaysTasksComponent } from './home/todays-tasks/todays-tasks.component';
+import { GeneralInfoComponent } from './home/general-info/general-info.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 
@@ -31,7 +33,8 @@ import { TodaysTasksComponent } from './home/todays-tasks/todays-tasks.component
     LoginComponent,
     PageNotFoundComponent,
     HeaderComponent,
-    TodaysTasksComponent
+    TodaysTasksComponent,
+    GeneralInfoComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -41,6 +44,7 @@ import { TodaysTasksComponent } from './home/todays-tasks/todays-tasks.component
     MaterialModule,
     SharedModule,
     BreadcrumbModule,
+    NgxChartsModule,
   ]
 })
 export class ViewsModule { }

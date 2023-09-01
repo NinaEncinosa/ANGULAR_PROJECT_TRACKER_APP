@@ -1,0 +1,22 @@
+.cards {
+  height: 15rem;
+}
+
+mat-card {
+  margin-top: 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+mat-card-title {
+  font-size: 1.5rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .cards {
+    height: 8rem;
+  }
+  mat-card {
+    font-size: 1.5rem;
+  }
+}/*# sourceMappingURL=general-info.component.css.map */

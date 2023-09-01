@@ -18,26 +18,24 @@ export class TodaysTasksComponent implements OnInit {
 
   constructor(
     private taskService: TaskService,
-    private StoryService: StoryService
   ) {
     //asi machea la fecha con la guardada por datepicker
     this.today.setHours(0, 0, 0, 0);
   }
 
   ngOnInit(): void {
-    this.StoryService.getAllItems().subscribe({
-      next: (stories) => {
-        stories.forEach((story) => {
-          this.StoryService.getTasksByStory(story._id).subscribe({
-            next: (tasks) => {
-              this.allTasks = this.allTasks.concat(tasks);
-              this.selectedTasks = this.filterByDate(this.today, this.allTasks);
-              this.loading = false;
-            },
-          });
-        });
+    this.taskService.getTasks().subscribe({
+      next: (tasks) => {
+        this.allTasks = tasks;
+        this.selectedTasks = this.allTasks;
+        this.loading = false;
       },
+      error: (error) => {
+        this.loading = false;
+        alert('Error fetching tasks');
+      }
     });
+    this.selectedTasks = this.filterByDate(this.today, this.allTasks);
   }
 
   filterByDate(filterDate: Date, list: Task[]): Task[] {
@@ -57,16 +55,20 @@ export class TodaysTasksComponent implements OnInit {
 
   onChange(selected: any) {
     if (selected.value === 'all') {
-      this.selectedTasks = this.allTasks;
-      this.selectedTasks = this.filterByDate(this.today, this.allTasks);
+      this.taskService.filterByStatusValue = undefined;
+      
     }
     if (selected.value === 'todo') {
-      this.selectedTasks = this.allTasks.filter((task) => task.done == false);
-      this.selectedTasks = this.filterByDate(this.today, this.selectedTasks);
+      this.taskService.filterByStatusValue = false;
     }
     if (selected.value === 'done') {
-      this.selectedTasks = this.allTasks.filter((task) => task.done == true);
-      this.selectedTasks = this.filterByDate(this.today, this.selectedTasks);
+      this.taskService.filterByStatusValue = true;
     }
+    // this.taskService.getTasks().subscribe({
+    //   next: (tasks) => {
+    //     this.selectedTasks = tasks;
+    //   },
+    // });
+
   }
 }

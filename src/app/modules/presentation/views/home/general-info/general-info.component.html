@@ -1,0 +1,21 @@
+<ng-container *ngIf="loading; else content">
+  <div class="loading-progress">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+</ng-container>
+
+<ng-template #content>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Your content in numbers</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="cards">
+        <ngx-charts-number-card [scheme]="'cool'" [innerPadding]="8" [results]="cards" [cardColor]="cardColor" (select)="onSelect($event)">
+        </ngx-charts-number-card>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+
+</ng-template>

@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { TaskFormComponent } from 'src/app/modules/presentation/feature/forms/task-form/task-form.component';
 import { MatDialog } from '@angular/material/dialog';
 import { endpoint } from 'src/app/modules/api-rest/enviroments/endpoints';
+import { StoryService } from '../story/story.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,17 +18,50 @@ export class TaskService extends ListService<Task> {
 
   private tasksSubject = new BehaviorSubject<Task[]>([]);
   tasks$ = this.tasksSubject.asObservable();
+  filterByStatus: boolean | undefined;
 
   constructor(
     private http: HttpClient,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private storyService: StoryService
   ) {
     super();
     
   }
 
+  set filterByStatusValue(value: boolean | undefined) {
+    this.filterByStatus = value;
+  }
+
+  //traigo las tasks del usuario logueado
+  getTasks() : Observable<Task[]>{
+    this.storyService.getAllItems().subscribe({
+      next: (stories) => {
+        stories.forEach((story) => {
+          this.storyService.getTasksByStory(story._id).subscribe({
+            next: (tasks) => {
+              tasks.sort((a: any, b: any) => b._id.localeCompare(a._id));
+              if (this.filterByStatus !== undefined) {
+                tasks = tasks.filter((task: { done: boolean | undefined; }) => task.done === this.filterByStatus);
+              }
+              if (this.tasksSubject)
+              this.tasksSubject.next(tasks);
+            }
+          });
+        });
+      },
+      error: (error) => {
+        this.snackBar.open('Error fetching tasks', 'Close', {
+          duration: 5000,
+        });
+      }
+    });
+    return this.tasks$;
+  }
+
   //abstract methods
+  //este trae todos los tasks de todos los usuarios
   override getAllItems(): Observable<Task[]> {
     this.http
       .get<ApiResponse>(PathRest.GET_TASKS)
@@ -36,6 +70,9 @@ export class TaskService extends ListService<Task> {
       ).subscribe({
         next: (tasks) => {
           tasks.sort((a: any, b: any) => b._id.localeCompare(a._id));
+          if (this.filterByStatus !== undefined) {
+            tasks = tasks.filter((task: { done: boolean | undefined; }) => task.done === this.filterByStatus);
+          }
           if (this.tasksSubject)
           this.tasksSubject.next(tasks);
         }
@@ -51,6 +88,9 @@ export class TaskService extends ListService<Task> {
     .subscribe({
       next: (tasks) => {
         tasks.sort((a: any, b: any) => b._id.localeCompare(a._id));
+        if (this.filterByStatus !== undefined) {
+          tasks = tasks.filter((task: { done: boolean | undefined; }) => task.done === this.filterByStatus);
+        }
         if (this.tasksSubject) {
           this.tasksSubject.next(tasks);
         }
