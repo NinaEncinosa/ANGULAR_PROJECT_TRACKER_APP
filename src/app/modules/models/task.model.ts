@@ -1,7 +1,6 @@
 import { Item } from "./item.model";
 
 export class Task extends Item {
-
     private _story: string;
     private _created?: Date;
     private _dueDate?: Date;

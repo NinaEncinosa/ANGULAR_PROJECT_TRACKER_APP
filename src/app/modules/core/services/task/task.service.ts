@@ -24,7 +24,6 @@ export class TaskService extends ListService<Task> {
     private http: HttpClient,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
-    private storyService: StoryService
   ) {
     super();
     
@@ -32,32 +31,6 @@ export class TaskService extends ListService<Task> {
 
   set filterByStatusValue(value: boolean | undefined) {
     this.filterByStatus = value;
-  }
-
-  //traigo las tasks del usuario logueado
-  getTasks() : Observable<Task[]>{
-    this.storyService.getAllItems().subscribe({
-      next: (stories) => {
-        stories.forEach((story) => {
-          this.storyService.getTasksByStory(story._id).subscribe({
-            next: (tasks) => {
-              tasks.sort((a: any, b: any) => b._id.localeCompare(a._id));
-              if (this.filterByStatus !== undefined) {
-                tasks = tasks.filter((task: { done: boolean | undefined; }) => task.done === this.filterByStatus);
-              }
-              if (this.tasksSubject)
-              this.tasksSubject.next(tasks);
-            }
-          });
-        });
-      },
-      error: (error) => {
-        this.snackBar.open('Error fetching tasks', 'Close', {
-          duration: 5000,
-        });
-      }
-    });
-    return this.tasks$;
   }
 
   //abstract methods

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StoryService } from 'src/app/modules/core/services/story/story.service';
 import { TaskService } from 'src/app/modules/core/services/task/task.service';
-import { Story } from 'src/app/modules/models/story';
 import { Task } from 'src/app/modules/models/task.model';
 
 @Component({
@@ -10,41 +8,31 @@ import { Task } from 'src/app/modules/models/task.model';
   styleUrls: ['./todays-tasks.component.scss'],
 })
 export class TodaysTasksComponent implements OnInit {
-  loading: boolean = true;
-  stories: Story[] = [];
-  allTasks: Task[] = [];
+  loading: boolean = false;
   selectedTasks: Task[] = [];
   today: Date = new Date();
 
-  constructor(
-    private taskService: TaskService,
-  ) {
-    //asi machea la fecha con la guardada por datepicker
+  constructor(private ts: TaskService) {
     this.today.setHours(0, 0, 0, 0);
   }
 
   ngOnInit(): void {
-    this.taskService.getTasks().subscribe({
+    this.ts.getAllItems().subscribe({
       next: (tasks) => {
-        this.allTasks = tasks;
-        this.selectedTasks = this.allTasks;
+        this.selectedTasks = tasks;
+        this.selectedTasks = this.filterByDate(this.today, this.selectedTasks);
         this.loading = false;
-      },
-      error: (error) => {
-        this.loading = false;
-        alert('Error fetching tasks');
       }
-    });
-    this.selectedTasks = this.filterByDate(this.today, this.allTasks);
+    });  
   }
 
-  filterByDate(filterDate: Date, list: Task[]): Task[] {
+  filterByDate(today: Date, list: Task[]): Task[] {
     let filteredList: Task[] = [];
     list.forEach((task) => {
       if (task.due) {
         let taskDate: Date | undefined = new Date(task.due);
         if (taskDate) {
-          if (!(taskDate > filterDate) && !(taskDate < filterDate)) {
+          if (!(taskDate > today) && !(taskDate < today)) {
             filteredList.push(task);
           }
         }
@@ -53,22 +41,26 @@ export class TodaysTasksComponent implements OnInit {
     return filteredList;
   }
 
-  onChange(selected: any) {
-    if (selected.value === 'all') {
-      this.taskService.filterByStatusValue = undefined;
-      
+  onChange(event: any) {
+    switch (event.value) {
+      case 'all':
+        this.ts.filterByStatusValue = undefined;
+        break;
+      case 'done':
+        this.ts.filterByStatusValue = true;
+        break;
+      case 'todo':
+        this.ts.filterByStatusValue = false;
+        break;
+      default:
+        break;
     }
-    if (selected.value === 'todo') {
-      this.taskService.filterByStatusValue = false;
-    }
-    if (selected.value === 'done') {
-      this.taskService.filterByStatusValue = true;
-    }
-    // this.taskService.getTasks().subscribe({
-    //   next: (tasks) => {
-    //     this.selectedTasks = tasks;
-    //   },
-    // });
-
+    this.ts.getAllItems().subscribe({
+      next: (tasks) => {
+        this.selectedTasks = tasks;
+        this.selectedTasks = this.filterByDate(this.today, this.selectedTasks);
+      }
+    });
   }
+
 }
