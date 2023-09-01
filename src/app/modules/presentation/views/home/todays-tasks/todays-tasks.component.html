@@ -16,7 +16,29 @@
         
             <ul>
                 <li *ngFor="let task of selectedTasks">
-                  <app-task-card [task]=task></app-task-card>
+                    <mat-card class="list-item" >
+                        <div [class.opacity]=task.done>
+                            <mat-card-header class="item-header" [class.styleCheckTask]=task.done>
+                              <mat-card-title >{{task.name}}</mat-card-title>
+                            </mat-card-header>
+                        
+                            <mat-divider></mat-divider>
+                        
+                            <mat-card-content  [class.styleCheckTask]=task.done>
+                              <p *ngIf="task.description!= null">Description: {{task.description}}</p>
+                              <p>Created: {{task.created | date}}</p>
+                              <p *ngIf="task.due != null">Due: {{task.due | date}}</p>
+                      
+                            </mat-card-content>
+                      
+                          <mat-card-actions align="end" class="task-actions">
+                            <mat-checkbox style="margin-right: 5px;" [checked]="task.done" (click)="togleDone(task)">Done</mat-checkbox>
+                            <!-- La API no me deja por "... has been blocked by CORS policy: No 'Access-Control-Allow-Origin'" -->
+                            <!-- <button mat-button (click)="editTask(task)"><mat-icon>edit</mat-icon></button> -->
+                            <button mat-button (click)="deleteTask(task)"><mat-icon>delete</mat-icon></button>
+                          </mat-card-actions>
+                        </div>
+                      </mat-card>
                 </li>
             </ul>
         </mat-card-content>

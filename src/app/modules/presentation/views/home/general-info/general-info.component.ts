@@ -43,7 +43,6 @@ export class GeneralInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ts.homeViewValue = false;
     let data = [
       this.ps.getAllItems(),
       this.es.getAllItems(),

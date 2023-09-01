@@ -9,14 +9,12 @@ mat-card {
 }
 
 mat-card-title {
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 @media only screen and (min-width: 768px) {
   .cards {
     height: 8rem;
-  }
-  mat-card {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 }/*# sourceMappingURL=general-info.component.css.map */

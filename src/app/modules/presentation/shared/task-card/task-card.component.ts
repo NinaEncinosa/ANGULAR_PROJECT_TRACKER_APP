@@ -39,13 +39,7 @@ export class TaskCardComponent {
 
   togleDone(){   
     this.task.done = !this.task.done;
-    this.ts.updateItem(this.task);
-    this.ts.updateItem(this.task).subscribe({
-      next: () => {
-        this.ts.getItems(this.task.story).subscribe();
-      }
-    });
-
+    this.ts.updateItem(this.task).subscribe();
   }
 
 }

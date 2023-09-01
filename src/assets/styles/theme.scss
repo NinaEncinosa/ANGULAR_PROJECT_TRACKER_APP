@@ -43,14 +43,28 @@ $FB-dark-theme: mat-dark-theme((
   
 ));
 
+.header-bg{
+  color: white;
+  background-color: #267d88e8 !important
+}
 
-
+mat-card{
+  background-color: #267c8811 !important
+}
 
 @include angular-material-theme($FB-theme);
  
 
 
 .dark-theme{
+  .header-bg{
+    background-color: #232222 !important
+  }
+
+  mat-card{
+    background-color: #424242b3 !important
+  }
+  
   .xng-breadcrumb-trail {
     background-color: rgb(24, 206, 212) !important
   }

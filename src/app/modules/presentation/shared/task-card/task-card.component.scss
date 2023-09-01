@@ -1,19 +1,25 @@
-.list-item {
-  transition: box-shadow 0.3s ease, transform 0.1s ease;
+.list-item{
   margin-bottom: 1rem;
-
-  &:hover {
-    box-shadow: 0 2px 4px rgba(63, 81, 181, 0.808);
-  }
-}
-
-.item-header {
-  margin-bottom: 0.5rem;
-}
-
-.styleCheckTask{
-  text-decoration: line-through;
-  opacity: 0.5;
-  filter: alpha(opacity=50);      
-  zoom: 1;
-}
+ }
+ 
+ .item-header {
+   margin-bottom: 0.5rem;
+ }
+ 
+ .styleCheckTask{
+   text-decoration: line-through;
+ 
+ }
+ 
+ .opacity{
+   opacity: 0.5;
+   filter: alpha(opacity=50);
+   zoom: 1;
+ }
+ 
+ 
+ .task-actions{
+   mat-icon{
+     margin-right: 0px;
+   }
+ }
