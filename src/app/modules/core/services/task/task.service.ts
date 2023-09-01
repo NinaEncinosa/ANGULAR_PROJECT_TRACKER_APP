@@ -9,7 +9,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { TaskFormComponent } from 'src/app/modules/presentation/feature/forms/task-form/task-form.component';
 import { MatDialog } from '@angular/material/dialog';
 import { endpoint } from 'src/app/modules/api-rest/enviroments/endpoints';
-import { StoryService } from '../story/story.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +18,7 @@ export class TaskService extends ListService<Task> {
   private tasksSubject = new BehaviorSubject<Task[]>([]);
   tasks$ = this.tasksSubject.asObservable();
   filterByStatus: boolean | undefined;
+  homeview: boolean = false;
 
   constructor(
     private http: HttpClient,
@@ -27,6 +27,10 @@ export class TaskService extends ListService<Task> {
   ) {
     super();
     
+  }
+
+  set homeViewValue(value: boolean){
+    this.homeview = value;
   }
 
   set filterByStatusValue(value: boolean | undefined) {
@@ -43,7 +47,9 @@ export class TaskService extends ListService<Task> {
       ).subscribe({
         next: (tasks) => {
           tasks.sort((a: any, b: any) => b._id.localeCompare(a._id));
-          if (this.filterByStatus !== undefined) {
+          if (this.homeview === true){
+            console.log("estoy en el homeview");
+            if (this.filterByStatus !== undefined)
             tasks = tasks.filter((task: { done: boolean | undefined; }) => task.done === this.filterByStatus);
           }
           if (this.tasksSubject)
@@ -61,9 +67,6 @@ export class TaskService extends ListService<Task> {
     .subscribe({
       next: (tasks) => {
         tasks.sort((a: any, b: any) => b._id.localeCompare(a._id));
-        if (this.filterByStatus !== undefined) {
-          tasks = tasks.filter((task: { done: boolean | undefined; }) => task.done === this.filterByStatus);
-        }
         if (this.tasksSubject) {
           this.tasksSubject.next(tasks);
         }

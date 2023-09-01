@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { combineLatest } from 'rxjs';
 import { StoryService } from 'src/app/modules/core/services/story/story.service';
 import { TaskService } from 'src/app/modules/core/services/task/task.service';
@@ -10,7 +10,7 @@ import { Task } from 'src/app/modules/models/task.model';
   templateUrl: './todays-tasks.component.html',
   styleUrls: ['./todays-tasks.component.scss'],
 })
-export class TodaysTasksComponent implements OnInit {
+export class TodaysTasksComponent implements OnInit, OnDestroy {
   loading: boolean = false;
   stories: Story[] = [];
   storiesIds: string[] = [];
@@ -22,6 +22,12 @@ export class TodaysTasksComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.ts.homeViewValue = true;
+    this.getTasks();
+
+  }
+
+  getTasks(){
     let data = [
       this.ss.getAllItems(),
       this.ts.getAllItems(),
@@ -39,8 +45,10 @@ export class TodaysTasksComponent implements OnInit {
         this.storiesIds.includes(task.story)
       );
       this.selectedTasks = this.filterByDate(this.today, this.selectedTasks);
+      if (this.ts.filterByStatus !== undefined)
+      this.selectedTasks = this.selectedTasks.filter((task: { done: boolean | undefined; }) => task.done === this.ts.filterByStatus);
       this.loading = false;
-    }); 
+    });
   }
 
   filterByDate(today: Date, list: Task[]): Task[] {
@@ -72,12 +80,11 @@ export class TodaysTasksComponent implements OnInit {
       default:
         break;
     }
-    this.ts.getAllItems().subscribe({
-      next: (tasks) => {
-        this.selectedTasks = tasks;
-        this.selectedTasks = this.filterByDate(this.today, this.selectedTasks);
-      }
-    });
+    this.getTasks();
+  }
+
+  ngOnDestroy(): void {
+    this.ts.homeview = false;
   }
 
 }
