@@ -5,7 +5,7 @@
   
       <mat-divider></mat-divider>
   
-      <mat-card-content>
+      <mat-card-content [class.styleCheckTask]=task.done>
         <p *ngIf="task.description!= null">Description: {{task.description}}</p>
         <p>Created: {{task.created | date}}</p>
         <p *ngIf="task.due != null">Due: {{task.due | date}}</p>
